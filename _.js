@@ -69,7 +69,12 @@ const _ = {
             if(func(obj[objKeys[i]])) return objKeys[i];
         }
         return undefined;
-    }
+    },
+
+    drop(array, elementsToDrop = 1){
+        return array.slice(elementsToDrop);
+
+    },
 };
 
 
@@ -84,8 +89,7 @@ function measureRuntime(func, iterations = 1, ...rest){
     return (performance.now()-start)/iterations;
 }
 
-let input = 'a ';
-for(let i = 0; i<=18; i++) input = input + input;
+let input = undefined
 iterations = 100;
 
 // Do not write or modify code below this line.

@@ -17,20 +17,21 @@ const _ = {
     },
 
     words(sentence){
-        let chars = [];
+        let chars = '';
         let words = [];
         for(let i = 0; i < sentence.length; i++){
-            if(sentence[i] != ' ') chars.push(sentence[i]);
-            if((sentence[i] === ' ' || i === sentence.length - 1) && chars != []){
-                words.push(chars.join(''));
-                chars = [];
+            if(sentence[i] != ' '){chars = chars + sentence[i]; continue;}
+            if((sentence[i] === ' ' || i === sentence.length - 1) && chars != ''){
+                words.push(chars);
+                chars = '';
             }
         }
-        return words;
-    },
 
-    words2(sentence){
-        return sentence.split(' ');
+        if(chars != ''){
+            words.push(chars);
+            chars = '';
+        }
+        return words;
     },
 
     pad(string, length){
@@ -61,11 +62,8 @@ function measureRuntime(func, iterations = 1, ...rest){
 }
 
 let input = 'a ';
-for(let i = 0; i<=20; i++) input = input + input;
+for(let i = 0; i<=18; i++) input = input + input;
 iterations = 100;
-
-console.log(measureRuntime(_.words, iterations, input));
-console.log(measureRuntime(_.words2, iterations, input));
 
 // Do not write or modify code below this line.
 module.exports = _;

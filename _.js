@@ -75,6 +75,16 @@ const _ = {
         return array.slice(elementsToDrop);
 
     },
+
+    dropWhile(array, predFunc){
+        let index = 0;
+        let element = array[index];
+        while(predFunc(element, index, array)){
+            index++;
+            element = array[index];
+        }
+        return this.drop(array, index);
+    }
 };
 
 

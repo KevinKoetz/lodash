@@ -46,6 +46,29 @@ const _ = {
             newString = newString + ' ';
         }
         return newString;
+    },
+
+    has(obj, key){
+        return obj[key] === undefined ? false : true;
+    },
+
+    invert(obj){
+        newObj = {};
+        objKeys = Object.keys(obj);
+
+        for(let i = 0; i < objKeys.length; i++){
+            newObj[obj[objKeys[i]]] = objKeys[i];
+        }
+
+        return newObj;
+    },
+
+    findKey(obj, func){
+        objKeys = Object.keys(obj);
+        for(let i = 0; i < objKeys.length; i++){
+            if(func(obj[objKeys[i]])) return objKeys[i];
+        }
+        return undefined;
     }
 };
 
